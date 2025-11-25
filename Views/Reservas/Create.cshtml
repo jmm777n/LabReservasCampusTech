@@ -1,0 +1,75 @@
+@model LabReservasCampusTech.Models.Reserva
+
+@{
+    ViewData["Title"] = "Nueva reserva";
+    var laboratorios = ViewBag.Laboratorios as List<string>;
+}
+
+<h1 class="mb-3">Registrar nueva reserva</h1>
+
+<form asp-action="Create" method="post" class="row g-3">
+    <div class="col-md-6">
+        <label asp-for="NombreProfesor" class="form-label"></label>
+        <input asp-for="NombreProfesor" class="form-control" />
+        <span asp-validation-for="NombreProfesor" class="text-danger"></span>
+    </div>
+
+    <div class="col-md-6">
+        <label asp-for="CorreoInstitucional" class="form-label"></label>
+        <input asp-for="CorreoInstitucional" class="form-control" />
+        <span asp-validation-for="CorreoInstitucional" class="text-danger"></span>
+    </div>
+
+    <div class="col-md-4">
+        <label asp-for="Laboratorio" class="form-label"></label>
+        <select asp-for="Laboratorio" class="form-select">
+            @if (laboratorios != null)
+            {
+                foreach (var lab in laboratorios)
+                {
+                    <option value="@lab">@lab</option>
+                }
+            }
+        </select>
+        <span asp-validation-for="Laboratorio" class="text-danger"></span>
+    </div>
+
+    <div class="col-md-4">
+        <label asp-for="FechaReserva" class="form-label"></label>
+        <input asp-for="FechaReserva" class="form-control" type="date" />
+        <span asp-validation-for="FechaReserva" class="text-danger"></span>
+    </div>
+
+    <div class="col-md-2">
+        <label asp-for="HoraInicio" class="form-label"></label>
+        <input asp-for="HoraInicio" class="form-control" type="time" />
+        <span asp-validation-for="HoraInicio" class="text-danger"></span>
+    </div>
+
+    <div class="col-md-2">
+        <label asp-for="HoraFin" class="form-label"></label>
+        <input asp-for="HoraFin" class="form-control" type="time" />
+        <span asp-validation-for="HoraFin" class="text-danger"></span>
+    </div>
+
+    <div class="col-12">
+        <label asp-for="Motivo" class="form-label"></label>
+        <textarea asp-for="Motivo" class="form-control" rows="3"></textarea>
+        <span asp-validation-for="Motivo" class="text-danger"></span>
+    </div>
+
+    <div class="col-md-4">
+        <label asp-for="CodigoReserva" class="form-label"></label>
+        <input asp-for="CodigoReserva" class="form-control" />
+        <span asp-validation-for="CodigoReserva" class="text-danger"></span>
+    </div>
+
+    <div class="col-12">
+        <button type="submit" class="btn btn-success">Guardar</button>
+        <a asp-action="Index" class="btn btn-secondary">Volver al listado</a>
+    </div>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

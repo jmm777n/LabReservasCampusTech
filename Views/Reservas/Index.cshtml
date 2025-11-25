@@ -1,0 +1,50 @@
+@model IEnumerable<LabReservasCampusTech.Models.Reserva>
+
+@{
+    ViewData["Title"] = "Listado de reservas";
+}
+
+<h1 class="mb-3">Reservas de Laboratorios</h1>
+
+<p>
+    <a class="btn btn-primary" asp-action="Create">Crear nueva reserva</a>
+</p>
+
+@if (!Model.Any())
+{
+    <div class="alert alert-info">
+        No hay reservas registradas.
+    </div>
+}
+else
+{
+    <table class="table table-bordered table-striped">
+        <thead class="table-dark">
+            <tr>
+                <th>@Html.DisplayNameFor(m => m.First().CodigoReserva)</th>
+                <th>@Html.DisplayNameFor(m => m.First().NombreProfesor)</th>
+                <th>@Html.DisplayNameFor(m => m.First().CorreoInstitucional)</th>
+                <th>@Html.DisplayNameFor(m => m.First().Laboratorio)</th>
+                <th>@Html.DisplayNameFor(m => m.First().FechaReserva)</th>
+                <th>@Html.DisplayNameFor(m => m.First().HoraInicio)</th>
+                <th>@Html.DisplayNameFor(m => m.First().HoraFin)</th>
+                <th>@Html.DisplayNameFor(m => m.First().Motivo)</th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.CodigoReserva</td>
+                <td>@item.NombreProfesor</td>
+                <td>@item.CorreoInstitucional</td>
+                <td>@item.Laboratorio</td>
+                <td>@item.FechaReserva.ToString("yyyy-MM-dd")</td>
+                <td>@item.HoraInicio</td>
+                <td>@item.HoraFin</td>
+                <td>@item.Motivo</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}
