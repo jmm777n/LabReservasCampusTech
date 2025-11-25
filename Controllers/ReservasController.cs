@@ -35,7 +35,7 @@ namespace LabReservasCampusTech.Controllers
 
             if (reserva.FechaReserva.Date < DateTime.Today)
             {
-                ModelState.AddModelError(nameof(Reserva.FechaReserva), "La fecha de la reserva no puede ser en el pasado.");
+                ModelState.AddModelError(nameof(Reserva.FechaReserva), "La fecha de la reserva no puede estar en pasado.");
             }
 
             if (reserva.HoraFin <= reserva.HoraInicio)
